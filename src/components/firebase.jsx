@@ -1,10 +1,9 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
 import { Calendar } from '@mantine/dates';
 import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.production.min";
+import { Xx } from "./trying";
+
 
 
 const firebaseConfig = {
@@ -18,107 +17,70 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-let arr = [];
-
-
-class FetchDBnews extends React.Component {
-
-    state = {
-        loading: null,
-        img: null,
-        headline: null
-
-    }
-
-    // async componentDidUpdate(stop) {
-    //     let xx = this.props.data
-    //     if (xx === null) {
-    //         console.log(xx)
-    //     } else {
-    //         xx = xx.toDateString();
-    //         console.log(xx);
-    //         const docRef = doc(db, "news", `${xx}`);
-    //         const docSnap = await getDoc(docRef);
-    //         const stoptimer = docSnap.data().CNN.length;
-
-    //         if (docSnap.exists()) {
-    //             console.log("Document data:", docSnap.data().CNN);
+export const db = getFirestore(app);
+const today = new Date();
 
 
-    //             for (let i = 0; i < stoptimer; i++) {
-    //                 const element = {
-    //                     img: docSnap.data().CNN[i].img,
-    //                     headline: docSnap.data().CNN[i].headline
-    //                 }
 
-    //                 arr.push(element)
-    //             }
-    //             console.log(arr)
-    //             this.state.loading = true;
+// class FetchDBnews extends React.Component {
 
-    //         } else {
-    //             // doc.data() will be undefined in this case
-    //             console.log("No such document!");
-    //         }
-    //     }
-    // }
+//     state = {
+//         loading: null,
+//         news: []
+//     }
 
+//     componentDidUpdate() {
+//         const date = this.props.setDate.toDateString()
+//         if (date !== null) {
+//             console.log(date)
+//         }
+//     }
 
-    // async componentDidMount() {
-    //     let xx = this.props.data
-    //     if (xx === null) {
-    //         console.log(xx)
-    //     } else {
-    //         xx = xx.toDateString();
-    //         console.log(xx);
-    //         const docRef = doc(db, "news", `${xx}`);
-    //         const docSnap = await getDoc(docRef);
+//     async componentDidMount() {
+//         const date = this.props.setDate.toDateString()
+//         const docRef = doc(db, "news", `${date}`);
+//         const docSnap = await getDoc(docRef);
 
-    //         if (docSnap.exists()) {
-    //             console.log("Document data:", docSnap.data().CNN);
+//         if (docSnap.exists()) {
+//             console.log("Document data:", docSnap.data().CNN);
 
-    //             this.setState({ loading: false, img: docSnap.data().CNN.img, headline: docSnap.data().CNN.headline })
-    //         } else {
-    //             // doc.data() will be undefined in this case
-    //             console.log("No such document!");
-    //         }
-    //     }
+//             this.setState({ loading: false, news: docSnap.data().CNN })
+//         } else {
+//             // doc.data() will be undefined in this case
+//             console.log("No such document!");
+//         }
+//     }
 
-    // }
+//     render() {
+//         if (this.state.loading) {
+//             return <div>Loading...</div>;
+//         }
+//         if (!this.state.news.length) {
+//             return <div>No news</div>
+//         }
 
-    render() {
-        const imge = this.state.img
-        const head = arr.map((item, index) => {
-            return (
-                <div key={index}>
-                    <h3>{item.headline}</h3>
-                </div>
-            )
-        })
-        return (
-            <div>
-                {this.state.loading ? <div>loading...</div>
-                    :
-                    <div>
-                        <h1>{head}</h1>
-                        <img src={imge} alt="" />
-                    </div>
-                }
-            </div>
-        )
-    }
-}
+//         return (
+//             <div>
+//                 {this.state.news.map((news, index) => {
+//                     return (
+//                         <div key={index}>
+//                             <div>{news.headline}</div>
+//                             <img src={news.img} alt="news" />
+//                         </div>
+//                     )
+//                 })}
+//             </div>
+//         )
+//     }
+// }
 
 export const Cal = () => {
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(today);
     // console.log(value)
     return (
-        <div>
+        <div className="flex items-center justify-center">
             <Calendar value={value} onChange={setValue} />
-
-            <FetchDBnews data={value} />
+            <Xx dates={value} />
         </div>
     )
 }
