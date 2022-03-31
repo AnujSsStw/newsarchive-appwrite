@@ -14,7 +14,7 @@ export const Xx = (xx) => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 setLoading(false);
-                setNews(docSnap.data().CNN);
+                setNews(docSnap.data().News_18);
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
