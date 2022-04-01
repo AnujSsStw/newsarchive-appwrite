@@ -32,25 +32,28 @@ export const NewsFeeds = (xx) => {
 
     return (
 
-        <section className='dark:bg-gray-800 w-full'>
+        <section className='dark:bg-gray-800 w-full p-7'>
             {loading ? <div>Loading...</div> :
                 <div>
 
                     {news.map((news, index) => {
                         return (
-                            <div key={index} >
+                            <div key={index}  className='feed'>
+                                <div className="flex-none w-60 relative">
+                                    <img src={news.img} alt="news" />
+                                </div>
                                 <h2>{news.headline}</h2>
-                                <img src={news.img} alt="news" />
                             </div>
                         )
                     })}
 
-
                     {news2.map((news2, index) => {
                         return (
-                            <div key={index}>
+                            <div key={index} className='feed'>
+                                <div className="flex-none w-60 relative">
+                                    <img src={news2.img} alt="news" />
+                                </div>
                                 <h2>{news2.headline}</h2>
-                                <img src={news2.img} alt="news" />
                             </div>
                         )
                     })}

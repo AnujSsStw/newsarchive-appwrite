@@ -9,6 +9,15 @@
     }
 
     img {
-        @apply rounded-lg;
+        @apply rounded-lg inset-0 w-full h-full object-cover;
     }
+
+    h2 {
+        @apply flex-auto text-lg font-semibold text-gray-100 p-5;
+    }
+
+    .feed {
+        @apply flex p-5;
+    }
+
 }
