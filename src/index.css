@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .logo {
+        @apply text-3xl p-1 text-green-500 ml-[0.75rem] font-bold md:sticky md:top-0;
+    }
+
+    img {
+        @apply rounded-lg;
+    }
+}

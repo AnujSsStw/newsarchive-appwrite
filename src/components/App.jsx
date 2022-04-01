@@ -5,7 +5,7 @@ import { Cal } from './firebase';
 function App() {
 
     return (
-        <div>
+        <div >
             <Cal />
         </div>
     )
