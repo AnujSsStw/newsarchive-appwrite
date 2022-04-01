@@ -17,7 +17,7 @@
     }
 
     .feed {
-        @apply flex p-5;
+        @apply md:flex p-5;
     }
 
 }
