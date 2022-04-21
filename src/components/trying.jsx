@@ -4,62 +4,61 @@ import { db } from "./firebase";
 import { useEffect } from "react";
 
 export const NewsFeeds = (xx) => {
-    const [loading, setLoading] = useState(true);
-    const [news, setNews] = useState([]);
-    const [news2, setNews2] = useState([]);
-    const date = xx.dates.toDateString()
+  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState([]);
+  const [news2, setNews2] = useState([]);
+  const date = xx.dates.toDateString();
 
-    useEffect(() => {
-        async function start() {
-            const docRef = doc(db, "news", `${date}`);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setLoading(false);
-                setNews(docSnap.data().News_18);
+  useEffect(() => {
+    async function start() {
+      const docRef = doc(db, "news", `${date}`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setLoading(false);
+        setNews(docSnap.data().News_18);
 
-                setNews2(docSnap.data().indiatoday);
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-                setLoading(true)
-            }
-        }
-        start()
-    }, [date])
+        setNews2(docSnap.data().indiatoday);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        setLoading(true);
+      }
+    }
+    start();
+  }, [date]);
 
-    news.reverse();
-    news2.reverse();
+  news.reverse();
+  news2.reverse();
 
-    return (
-        <section className='dark:bg-gray-800 w-full p-7 min-h-screen'>
-            {loading ? <div>Loading...</div> :
-                <div>
-
-                    {news.map((news, index) => {
-                        return (
-                            <div key={index}  className='feed'>
-                                <div className="flex-none w-60 relative">
-                                    <img src={news.img} alt="news" />
-                                </div>
-                                <h2>{news.headline}</h2>
-                            </div>
-                        )
-                    })}
-
-                    {news2.map((news2, index) => {
-                        return (
-                            <div key={index} className='feed'>
-                                <div className="flex-none w-60 relative">
-                                    <img src={news2.img} alt="news" />
-                                </div>
-                                <h2>{news2.headline}</h2>
-                            </div>
-                        )
-                    })}
-
-
+  return (
+    <section className="dark:bg-gray-800 w-full p-7 min-h-screen">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          {news.map((news, index) => {
+            return (
+              <div key={index} className="feed">
+                <div className="flex-none w-60 relative">
+                  <img src={news.img} alt="news" />
                 </div>
-            }
-        </section >
-    )
-}
+                <h2>{news.headline}</h2>
+              </div>
+            );
+          })}
+
+          {news2.map((news2, index) => {
+            return (
+              <div key={index} className="feed">
+                <div className="flex-none w-60 relative">
+                  <img src={news2.img} alt="news" />
+                </div>
+                <h2>{news2.headline}</h2>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+};

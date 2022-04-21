@@ -1,15 +1,11 @@
-import { Cal } from './firebase';
-
-
+import { Cal } from "./firebase";
 
 function App() {
-
-    return (
-        <div >
-            <Cal />
-        </div>
-    )
+  return (
+    <div>
+      <Cal />
+    </div>
+  );
 }
 
-
-export default App
+export default App;
