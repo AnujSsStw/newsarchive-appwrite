@@ -31,7 +31,6 @@ export const NewsFeeds = (xx) => {
     news2.reverse();
 
     return (
-
         <section className='dark:bg-gray-800 w-full p-7 min-h-screen'>
             {loading ? <div>Loading...</div> :
                 <div>

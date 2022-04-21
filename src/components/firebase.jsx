@@ -21,59 +21,6 @@ export const db = getFirestore(app);
 const today = new Date();
 
 
-
-// class FetchDBnews extends React.Component {
-
-//     state = {
-//         loading: null,
-//         news: []
-//     }
-
-//     componentDidUpdate() {
-//         const date = this.props.setDate.toDateString()
-//         if (date !== null) {
-//             console.log(date)
-//         }
-//     }
-
-//     async componentDidMount() {
-//         const date = this.props.setDate.toDateString()
-//         const docRef = doc(db, "news", `${date}`);
-//         const docSnap = await getDoc(docRef);
-
-//         if (docSnap.exists()) {
-//             console.log("Document data:", docSnap.data().CNN);
-
-//             this.setState({ loading: false, news: docSnap.data().CNN })
-//         } else {
-//             // doc.data() will be undefined in this case
-//             console.log("No such document!");
-//         }
-//     }
-
-//     render() {
-//         if (this.state.loading) {
-//             return <div>Loading...</div>;
-//         }
-//         if (!this.state.news.length) {
-//             return <div>No news</div>
-//         }
-
-//         return (
-//             <div>
-//                 {this.state.news.map((news, index) => {
-//                     return (
-//                         <div key={index}>
-//                             <div>{news.headline}</div>
-//                             <img src={news.img} alt="news" />
-//                         </div>
-//                     )
-//                 })}
-//             </div>
-//         )
-//     }
-// }
-
 export const Cal = () => {
     const [value, setValue] = useState(today);
     // console.log(value)
@@ -82,7 +29,7 @@ export const Cal = () => {
             <section className="dark:bg-gray-900 md:min-h-screen shadow-xl p-8">
                 <h1 className="logo">News Archiver</h1>
                 <Calendar value={value} onChange={setValue} className='md:sticky md:top-14 dark:bg-gray-100 rounded-xl m-auto' />
-
+                <p className='mt-5 text-green-500'>Check log if loading...</p>
             </section>
             <NewsFeeds dates={value} />
         </div>
