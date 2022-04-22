@@ -1,35 +1,37 @@
-import React, { useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Appwrite } from "appwrite";
+import dateFormat from "dateformat";
+const sdk = new Appwrite();
+
+sdk
+  .setEndpoint("http://localhost/v1") // Your API Endpoint
+  .setProject("6261813420c26bbbf71b"); // Your project ID
 
 export const NewsFeeds = (xx) => {
   const [loading, setLoading] = useState(true);
   const [news, setNews] = useState([]);
-  const [news2, setNews2] = useState([]);
-  const date = xx.dates.toDateString();
+  const collId = xx.dates;
+  const datesss = dateFormat(collId, "yyyy-mm-dd");
 
   useEffect(() => {
     async function start() {
-      const docRef = doc(db, "news", `${date}`);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setLoading(false);
-        setNews(docSnap.data().News_18);
+      let promise = await sdk.database.listDocuments(datesss).then(
+        (response) => {
+          setLoading(false);
 
-        setNews2(docSnap.data().indiatoday);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-        setLoading(true);
-      }
+          setNews(response.documents);
+        }, // Success
+        (error) => {
+          console.log("No such document!");
+          setLoading(true);
+        } // Error
+      );
     }
     start();
-  }, [date]);
+  }, [collId]);
 
   news.reverse();
-  news2.reverse();
-
+  const Divider = () => <hr className="sidebar-hr" />;
   return (
     <section className="dark:bg-gray-800 w-full p-7 min-h-screen">
       {loading ? (
@@ -38,22 +40,30 @@ export const NewsFeeds = (xx) => {
         <div>
           {news.map((news, index) => {
             return (
-              <div key={index} className="feed">
-                <div className="flex-none w-60 relative">
-                  <img src={news.img} alt="news" />
-                </div>
-                <h2>{news.headline}</h2>
+              <div key={index}>
+                {news.webN === "News18" ? (
+                  <div className="feed">
+                    <div className="flex-none w-60 ml-auto mr-auto relative">
+                      <img src={news.src} alt="news" />
+                    </div>
+                    <h2>{news.topic}</h2>
+                  </div>
+                ) : null}
               </div>
             );
           })}
-
-          {news2.map((news2, index) => {
+          <Divider />
+          {news.map((news2, index) => {
             return (
               <div key={index} className="feed">
-                <div className="flex-none w-60 relative">
-                  <img src={news2.img} alt="news" />
-                </div>
-                <h2>{news2.headline}</h2>
+                {news2.webN === "IndiaToday" ? (
+                  <div className="feed">
+                    <div className="flex-none w-60 ml-auto mr-auto relative">
+                      <img src={news2.src} alt="news" />
+                    </div>
+                    <h2>{news2.topic}</h2>
+                  </div>
+                ) : null}
               </div>
             );
           })}

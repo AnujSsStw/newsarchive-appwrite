@@ -20,4 +20,10 @@
         @apply md:flex p-5;
     }
 
+    .sidebar-hr {
+        @apply bg-gray-100 dark:bg-gray-800 
+        border border-gray-100 dark:border-gray-800 rounded-full
+        mx-2;
+    }
+
 }
