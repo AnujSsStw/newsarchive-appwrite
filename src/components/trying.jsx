@@ -4,8 +4,8 @@ import dateFormat from "dateformat";
 const sdk = new Appwrite();
 
 sdk
-  .setEndpoint("http://localhost/v1") // Your API Endpoint
-  .setProject("6261813420c26bbbf71b"); // Your project ID
+  .setEndpoint("http://localhost:6969/v1") // Your API Endpoint
+  .setProject("62626701c37ffb568013"); // Your project ID
 
 export const NewsFeeds = (xx) => {
   const [loading, setLoading] = useState(true);
@@ -52,10 +52,12 @@ export const NewsFeeds = (xx) => {
               </div>
             );
           })}
+
           <Divider />
+          
           {news.map((news2, index) => {
             return (
-              <div key={index} className="feed">
+              <div key={index}>
                 {news2.webN === "IndiaToday" ? (
                   <div className="feed">
                     <div className="flex-none w-60 ml-auto mr-auto relative">
