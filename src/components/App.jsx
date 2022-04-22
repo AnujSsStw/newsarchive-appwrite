@@ -1,4 +1,4 @@
-import { Cal } from "./firebase";
+import { Cal } from "./body";
 
 function App() {
   return (
