@@ -28,7 +28,7 @@ export const NewsFeeds = (xx) => {
       );
     }
     start();
-  }, [collId]);
+  }, [collId, datesss]);
 
   news.reverse();
   const Divider = () => <hr className="sidebar-hr" />;
