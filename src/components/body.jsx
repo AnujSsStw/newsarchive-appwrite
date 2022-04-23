@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { NewsFeeds } from "./trying";
 import dateFormat from "dateformat";
 const now = new Date();
-const datesss = dateFormat(now, "yyyy-mm-dd" );
 
 
 export const Cal = () => {
