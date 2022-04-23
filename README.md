@@ -1,3 +1,2 @@
 ## Haven't loaded the data for regular update 
-# Backend still need a bit more work to update/ render content of a give site hourly
-- for now only news18 and indiatoday news will render as for example
+# for that i have to host the app on a node server or with a appwrite droplete on digitalocean to regular collect the data from sites. MY DIGITALOCEAN CREDIT IS LOW I CAN'T HOST SORRY🙇‍♀️🙇
