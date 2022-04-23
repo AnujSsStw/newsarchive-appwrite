@@ -15,7 +15,7 @@ export const NewsFeeds = (xx) => {
 
   useEffect(() => {
     async function start() {
-      let promise = await sdk.database.listDocuments(datesss).then(
+      await sdk.database.listDocuments(datesss).then(
         (response) => {
           setLoading(false);
 
