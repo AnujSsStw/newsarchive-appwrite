@@ -1,7 +1,6 @@
 import { Calendar } from "@mantine/dates";
 import React, { useState } from "react";
 import { NewsFeeds } from "./trying";
-import dateFormat from "dateformat";
 const now = new Date();
 
 
